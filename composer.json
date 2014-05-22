@@ -1,0 +1,29 @@
+{
+    "name": "fabiopaiva/doctrine-orm-cidades-br",
+    "description": "Crud, entidades e dados das cidades brasileiras",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "zf2"
+    ],
+    "homepage": "https://github.com/fabiopaiva/ZfcUserCrud/DoctrineORMCidadesBr",
+    "authors": [
+        {
+            "name": "Fábio Paiva",
+            "email": "paiva.fabiofelipe@gmail.com",
+            "homepage": "http://sigweb.net.br"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+	"doctrine/doctrine-orm-module": "0.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "DoctrineORMCidadesBr": "src/"
+        },
+        "classmap": [
+            "./"
+        ]
+    }
+}

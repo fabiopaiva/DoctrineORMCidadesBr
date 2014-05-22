@@ -1,0 +1,25 @@
+<div class="page-header">
+    <h3>
+        Estado
+        <small>Editar registro</small>
+    </h3>
+</div>
+<a class="btn btn-info" href="<?php echo $this->url('estados'); ?>">
+    <span class="glyphicon glyphicon-backward"></span>
+    Cancelar
+</a>
+<br/>
+<br/>
+<?php echo $this->form()->openTag($form); ?>
+<?php foreach ($form as $element): ?>
+    <div class="form-group">
+        <label for="<?php echo $element->getName(); ?>" class="col-sm-2 control-label">
+            <?php echo $element->getLabel(); ?>
+        </label>
+        <div class="col-sm-10">
+            <?php echo $this->formElement($element); ?>
+        </div>
+    </div>
+<?php endforeach; ?>
+<?php echo $this->form()->closeTag($form); ?>
+
