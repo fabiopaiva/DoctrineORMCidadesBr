@@ -3,6 +3,10 @@ DoctrineORMCidadesBr
 
 Oferece entidades, dados e um CRUD para edição de cidades do Brasil
 
+## Instalação
+
+	php composer.phar require fabiopaiva/doctrine-orm-cidades-br:dev-master
+
 ## Uso
 
 Habilite os módulos no application.config.php:
@@ -37,6 +41,13 @@ ex: doctrine.local.php
 		        )))));
 
 
+Crie as tabelas no banco de dados
+
+	vendor/bin/doctrine-module orm:schema-tool:update --dump-sql
+	#se o comando acima exibir o Create Table para cidade, uf e endereço prossiga
+	vendor/bin/doctrine-module orm:schema-tool:update --force
+
+Importe os dados do arquivo data/cidades.zip
 
 Use as rotas
 
@@ -44,6 +55,7 @@ Use as rotas
 	<?php echo $this->url('estados');?> para estados
 
 Além de um CRUD para gerenciar os dados você pode usar as entidades do repositório
+
 	DoctrineORMCidadesBr\Entity\Cidade
 	DoctrineORMCidadesBr\Entity\Uf
 	DoctrineORMCidadesBr\Entity\Endereco
