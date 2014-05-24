@@ -1,7 +1,7 @@
 DoctrineORMCidadesBr
 ====================
 
-Oferece entidades, dados e um CRUD para edição de cidades do Brasil
+Oferece entidades, dados, formulario de endereço e um CRUD para edição de cidades do Brasil
 
 ## Instalação
 

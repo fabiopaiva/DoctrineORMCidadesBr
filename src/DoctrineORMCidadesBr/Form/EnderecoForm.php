@@ -25,8 +25,7 @@ class EnderecoForm extends Fieldset implements InputFilterProviderInterface {
     public function __construct($name, \Zend\ServiceManager\ServiceManager $sm) {
         $this->sm = $sm;
         parent::__construct($name);
-
-
+	$this->setAttribute('class', 'fieldset-endereco');
 
         $cidade = new Fieldset("cidade");
         $cidade->setObject(new CidadeEntity())
