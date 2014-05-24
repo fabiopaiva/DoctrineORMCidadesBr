@@ -19,7 +19,7 @@ class Endereco {
     protected $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="DoctrineORMCidadesBr\Entity\Cidade")
+     * @ORM\ManyToOne(targetEntity="DoctrineORMCidadesBr\Entity\Cidade", cascade={"persist"})
      * @var Cidade
      */
     protected $cidade;

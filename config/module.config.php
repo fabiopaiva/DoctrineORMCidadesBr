@@ -1,6 +1,9 @@
 <?php
 
 return array(
+    'doctrine-orn-cidades-br' => array(
+        'webserviceCep' => 'http://cep.sigweb.net.br/%s'
+    ),
     'doctrine' => array(
         'driver' => array(
             'application_entities' => array(
@@ -35,8 +38,8 @@ return array(
                     ),
                 ),
             ),
-            )
-        ),
+        )
+    ),
     'controllers' => array(
         'invokables' => array(
             'DoctrineORMCidadesBr\Controller\Cidade' => 'DoctrineORMCidadesBr\Controller\CidadeController',
@@ -46,6 +49,9 @@ return array(
     'view_manager' => array(
         'template_path_stack' => array(
             'DoctrineORMCidadesBr' => __DIR__ . '/../view',
+        ),
+        'strategies' => array(
+            'ViewJsonStrategy',
         ),
     ),
 );

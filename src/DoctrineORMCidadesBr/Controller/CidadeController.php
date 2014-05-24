@@ -9,9 +9,9 @@ use DoctrineORMModule\Stdlib\Hydrator\DoctrineEntity;
 use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator;
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
 use Zend\Paginator\Paginator;
+use Zend\View\Model\JsonModel;
 
 class CidadeController extends AbstractActionController {
-
 
     public function indexAction() {
 
@@ -67,7 +67,7 @@ class CidadeController extends AbstractActionController {
                 ->find($id);
         $form = $this->getForm();
         $form->bind($tipo);
-        
+
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost());
             if ($form->isValid()) {
@@ -78,13 +78,13 @@ class CidadeController extends AbstractActionController {
             }
         }
         $form->prepare();
-        
+
         return array(
             'form' => $form
         );
     }
-    
-        public function excluirAction() {
+
+    public function excluirAction() {
         try {
             $id = $this->params()->fromRoute('id');
             $entity = $this
@@ -145,6 +145,37 @@ class CidadeController extends AbstractActionController {
                     )
         ));
         return $form;
+    }
+
+    public function buscarCidadeAction() {
+        $term = $this->params()->fromQuery('term');
+        $cidades = $this
+                ->getOM()
+                ->getRepository('DoctrineORMCidadesBr\Entity\Cidade')
+                ->createQueryBuilder('q')
+                ->where('q.nome like :term ')
+                ->setParameter('term', "%{$term}%")
+                ->getQuery()
+                ->execute()
+        ;
+        $lista = array();
+        foreach ($cidades as $cidade) {
+            $lista[] = array(
+                'value' => $cidade->getId(),
+                'label' => $cidade->getNome()
+            );
+        }
+
+        return new JsonModel($lista);
+    }
+    
+    public function buscarCepAction() {
+        $config = $this->getServiceLocator()->get('Config');
+        $webservice = $config['doctrine-orn-cidades-br']['webserviceCep'];
+        $cep = $this->params()->fromRoute('id');
+        $resposta = json_decode(file_get_contents(sprintf($webservice, $cep)), true);
+        return new JsonModel($resposta);
+        
     }
 
     /**
