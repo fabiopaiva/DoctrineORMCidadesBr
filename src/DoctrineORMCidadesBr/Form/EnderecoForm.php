@@ -119,6 +119,7 @@ class EnderecoForm extends Fieldset implements InputFilterProviderInterface {
                     ),
                     'attributes' => array(
                         'class' => 'form-control input-sm input_bairro',
+			'style' => 'width:180px; margin-right:10px;'
                     )
                 ))
                 ->add($cidade)
