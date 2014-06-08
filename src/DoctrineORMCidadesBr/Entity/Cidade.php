@@ -22,6 +22,10 @@ class Cidade {
      */
     protected $nome;
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $label;
+    /**
      * @ORM\ManyToOne(targetEntity="DoctrineORMCidadesBr\Entity\Uf")
      * @var Uf
      */
@@ -51,6 +55,15 @@ class Cidade {
 
     public function setUf(Uf $uf) {
         $this->uf = $uf;
+        return $this;
+    }
+    
+    public function getLabel() {
+        return $this->label;
+    }
+
+    public function setLabel($label) {
+        $this->label = $label;
         return $this;
     }
 

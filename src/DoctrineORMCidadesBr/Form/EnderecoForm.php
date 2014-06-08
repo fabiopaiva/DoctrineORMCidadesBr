@@ -5,8 +5,8 @@ namespace DoctrineORMCidadesBr\Form;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
 use DoctrineORMCidadesBr\Entity\Endereco as EnderecoEntity;
-use DoctrineORMCidadesBr\Entity\Cidade as CidadeEntity;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
+use DoctrineORMCidadesBr\Fieldset\Cidade as CidadeFieldset;
 
 class EnderecoForm extends Fieldset implements InputFilterProviderInterface {
 
@@ -25,38 +25,10 @@ class EnderecoForm extends Fieldset implements InputFilterProviderInterface {
     public function __construct($name, \Zend\ServiceManager\ServiceManager $sm) {
         $this->sm = $sm;
         parent::__construct($name);
-	$this->setAttribute('class', 'fieldset-endereco');
+        $this->setAttribute('class', 'fieldset-endereco');
 
-        $cidade = new Fieldset("cidade");
-        $cidade->setObject(new CidadeEntity())
-                ->setHydrator(new DoctrineObject($sm->get('Doctrine\ORM\EntityManager')))
-                ->add(
-                        array(
-                            'type' => 'hidden',
-                            'name' => "id",
-                            'attributes' => array(
-                                'type' => 'hidden',
-                                'id' => "{$name}_cidade",
-                                "class" => "input_cidade"
-                            )
-                        )
-                )
-                ->add(
-                        array(
-                            'name' => "nome",
-                            'options' => array(
-                                'label' => 'Cidade'
-                            ),
-                            'attributes' => array(
-                                'data-source' => '/cidades/buscar-cidade',
-                                'data-id' => "{$name}_cidade",
-                                'class' => 'form-control input-sm doctrine_orm_cidades_br_autocomplete input_cidade_label',
-                                'id' => "label_{$name}_cidade",
-                                'attributes' => "style='width:200px'"
-                            )
-                        )
-                )
-        ;
+
+        $cidade = new CidadeFieldset("cidade", $sm);
 
         $this
                 ->setObject(new EnderecoEntity())
@@ -69,7 +41,6 @@ class EnderecoForm extends Fieldset implements InputFilterProviderInterface {
                     'attributes' => array(
                         'class' => 'form-control input-sm mask input_cep',
                         'data-mask' => '99.999-999',
-                        'style' => 'width:90px; margin-right:10px',
                         'onchange' => "if(jQuery){var cxCep = this; jQuery.getJSON("
                         . "'/cidades/buscarCep/' + this.value, "
                         . "function(d){"
@@ -88,7 +59,6 @@ class EnderecoForm extends Fieldset implements InputFilterProviderInterface {
                     ),
                     'attributes' => array(
                         'class' => 'form-control input-sm input_logradouro',
-                        'style' => 'width:230px; margin-right:10px'
                     )
                 ))
                 ->add(array(
@@ -98,7 +68,6 @@ class EnderecoForm extends Fieldset implements InputFilterProviderInterface {
                     ),
                     'attributes' => array(
                         'class' => 'form-control input-sm input_numero',
-                        'style' => 'width:60px; margin-right:10px'
                     )
                 ))
                 ->add(array(
@@ -108,7 +77,6 @@ class EnderecoForm extends Fieldset implements InputFilterProviderInterface {
                     ),
                     'attributes' => array(
                         'class' => 'form-control input-sm input_complemento',
-                        'style' => 'width:70px; margin-right:10px'
                     )
                 ))
                 ->add(array(
@@ -118,7 +86,6 @@ class EnderecoForm extends Fieldset implements InputFilterProviderInterface {
                     ),
                     'attributes' => array(
                         'class' => 'form-control input-sm input_bairro',
-			'style' => 'width:180px; margin-right:10px;'
                     )
                 ))
                 ->add($cidade)

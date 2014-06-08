@@ -123,6 +123,16 @@ class CidadeController extends AbstractActionController {
                     )
                 ))
                 ->add(array(
+                    'name' => 'label',
+                    'options' => array(
+                        'label' => 'Label:'
+                    ),
+                    'attributes' => array(
+                        'class' => 'form-control input-sm',
+                        'size' => 50
+                    )
+                ))
+                ->add(array(
                     'name' => 'uf',
                     'type' => 'DoctrineORMModule\Form\Element\EntitySelect',
                     'options' => array(
@@ -162,7 +172,7 @@ class CidadeController extends AbstractActionController {
         foreach ($cidades as $cidade) {
             $lista[] = array(
                 'value' => $cidade->getId(),
-                'label' => $cidade->getNome()
+                'label' => $cidade->getLabel()
             );
         }
 
