@@ -94,28 +94,6 @@ class EnderecoForm extends Fieldset implements InputFilterProviderInterface {
                     'type' => 'hidden'
                 ))
         ;
-        /* @var $request Zend\Http\PhpEnvironment\Request */
-        $request = $this->sm->get('Request');
-        if ($request->isPost()) {
-            $file = $request->getFiles()->get($name);
-            if ($file && is_file($file['file']['tmp_name'])) {
-                $params = $file['file'];
-                $newName = $destinationFolder
-                        . DIRECTORY_SEPARATOR
-                        . uniqid()
-                        . '_'
-                        . $params['name'];
-                move_uploaded_file($params['tmp_name'], $newName);
-                /* @var $newParams \Zend\Stdlib\Parameters */
-                $newParams = $request->getPost();
-                $newParams->set($name, array(
-                    'name' => $params['name'],
-                    'type' => $params['type'],
-                    'size' => $params['size'],
-                    'filepath' => $newName
-                ));
-            }
-        }
     }
 
     public function getInputFilterSpecification() {
