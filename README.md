@@ -46,6 +46,9 @@ Crie as tabelas no banco de dados
 	vendor/bin/doctrine-module orm:schema-tool:update --dump-sql
 	#se o comando acima exibir o Create Table para cidade, uf e endereço prossiga
 	vendor/bin/doctrine-module orm:schema-tool:update --force
+	unzip vendor/fabiopaiva/doctrine-orm-cidades-dr/data/cidades.zip
+	vendor/bin/doctrine-module dbal:import cidades.sql
+	rm cidades.sql
 
 Importe os dados do arquivo data/cidades.zip
 
