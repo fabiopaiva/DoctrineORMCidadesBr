@@ -181,7 +181,7 @@ class CidadeController extends AbstractActionController {
     
     public function buscarCepAction() {
         $config = $this->getServiceLocator()->get('Config');
-        $webservice = $config['doctrine-orn-cidades-br']['webserviceCep'];
+        $webservice = $config['doctrine-orm-cidades-br']['webserviceCep'];
         $cep = $this->params()->fromRoute('id');
         $resposta = json_decode(file_get_contents(sprintf($webservice, $cep)), true);
         return new JsonModel($resposta);

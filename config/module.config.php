@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'doctrine-orn-cidades-br' => array(
+    'doctrine-orm-cidades-br' => array(
         'webserviceCep' => 'http://cep.sigweb.net.br/%s'
     ),
     'doctrine' => array(

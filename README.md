@@ -79,12 +79,6 @@ Adicione o relacionamento em sua entidade
     $endereco->setLabel('Endereço');
     $form->add($endereco);
 
-Para alinhar o campo cidade com os outros campos adicione o CSS:
-
-    fieldset.fieldset-endereco fieldset{
-        display: inline-block;
-    }
-
 Adicione os scripts para buscar cidade no formulário (Autocomplete) 
 
     //cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js
@@ -98,7 +92,7 @@ Adicione o código
 A busca pelo CEP usa o webservice http://cep.sigweb.net.br para utilizar outro Webservice sobrescreva:
 
     return array(
-        'doctrine-orn-cidades-br' => array(
+        'doctrine-orm-cidades-br' => array(
             'webserviceCep' => 'http://meuwebservice/%s'
         ),
     );
