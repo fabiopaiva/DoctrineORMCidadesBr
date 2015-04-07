@@ -50,8 +50,6 @@ Crie as tabelas no banco de dados
 	vendor/bin/doctrine-module dbal:import cidades.sql
 	rm cidades.sql
 
-Importe os dados do arquivo data/cidades.zip
-
 ## Helpers
 
 Use as rotas
