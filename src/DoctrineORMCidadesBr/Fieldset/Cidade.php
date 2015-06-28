@@ -44,6 +44,7 @@ class Cidade extends Fieldset implements InputFilterProviderInterface {
                                 'label' => $label
                             ),
                             'attributes' => array(
+                                'autocomplete' => 'off',
                                 'data-source' => '/cidades/buscar-cidade',
                                 'data-id' => "{$name}_cidade",
                                 'class' => 'form-control input-sm doctrine_orm_cidades_br_autocomplete input_cidade_label',
